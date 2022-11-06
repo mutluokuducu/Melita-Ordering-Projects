@@ -6,6 +6,7 @@ import com.meltaorder.dto.request.ApprovedOrder;
 import com.meltaorder.exeption.OrderServiceException;
 import com.meltaorder.repository.OrderingRepository;
 import com.meltaorder.repository.entity.PersonalDetails;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +32,7 @@ public class OrderService {
         .orElseThrow(() -> new OrderServiceException(ORDER_NOT_FOUND)));
     if (personalDetails.isPresent()) {
       personalDetails.get().setApproveStatus(approvedOrder.getApproveStatus());
+      personalDetails.get().setLocalDateTime(LocalDateTime.now());
       orderingRepository.save(personalDetails.get());
     }
   }

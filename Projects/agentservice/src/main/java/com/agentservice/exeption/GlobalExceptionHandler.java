@@ -40,6 +40,7 @@ public class GlobalExceptionHandler {
   @ResponseBody
   public ResponseEntity<ErrorResponse> handleException(
       Exception exception) {
+    log.error("Error occurred. {}", exception);
     return new ResponseEntity<>(
         ErrorResponse.builder()
             .description(exception.getMessage())

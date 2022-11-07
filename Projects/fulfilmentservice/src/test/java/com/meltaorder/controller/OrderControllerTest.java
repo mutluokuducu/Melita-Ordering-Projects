@@ -1,9 +1,9 @@
 package com.meltaorder.controller;
 
+import static com.melitaorder.utils.JsonUtils.objectToJson;
+import static com.melitaorder.utils.ObjectFactory.buildApprovedOrder;
 import static com.meltaorder.constant.Constants.POST_ORDER_APPROVE_URL;
 import static com.meltaorder.exeption.ErrorType.ORDER_NOT_FOUND;
-import static com.meltaorder.utils.JsonUtils.objectToJson;
-import static com.meltaorder.utils.ObjectFactory.buildApprovedOrder;
 import static org.mockito.Mockito.doThrow;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -67,22 +67,4 @@ class OrderControllerTest {
         .andExpect(status().isNotFound());
   }
 
-//  @Test
-//  void createCreditCard_shouldGetCardList() throws Exception {
-//    when(creditCardService
-//        .getCardList())
-//        .thenReturn(buildCreditCardResponse());
-//
-//    this.mockMvc
-//        .perform(
-//            get(CREDIT_CARD_URL)
-//                .contentType(APPLICATION_JSON_UTF8_VALUE)
-//        ).andExpect(status().isOk())
-//        .andExpect(jsonPath("$.creditCardList").isNotEmpty())
-//        .andExpect(jsonPath("$.creditCardList[0].fullName").value(NAME_1))
-//        .andExpect(jsonPath("$.creditCardList[0].cardNumber").value(VALID_CARD_1))
-//
-//        .andExpect(jsonPath("$.creditCardList[1].fullName").value(NAME_2))
-//        .andExpect(jsonPath("$.creditCardList[1].cardNumber").value(VALID_CARD_2));
-//  }
 }

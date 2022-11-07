@@ -1,4 +1,4 @@
-version: '3'
+version: "1"
 services:
   rabbitmq:
     container_name: rabbitmq
@@ -6,3 +6,34 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+      - backend
+  server-agent:
+    container_name: agentservice
+    build:
+      context: ./agentservice
+      dockerfile: Dockerfile
+    image: agentservice:latest
+    ports:
+      - 9090:9090
+    networks:
+      - backend
+    depends_on:
+      - rabbitmq
+      - server-fulfilment
+
+  server-fulfilment:
+    container_name: fulfilmentservice
+    build:
+      context: ./fulfilmentservice
+      dockerfile: Dockerfile
+    image: fulfilmentservice:latest
+    ports:
+      - 9091:9091
+    networks:
+      - backend
+    depends_on:
+      - rabbitmq
+
+networks:
+  backend:

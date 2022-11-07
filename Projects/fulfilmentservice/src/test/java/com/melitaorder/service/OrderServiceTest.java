@@ -1,14 +1,13 @@
-package com.meltaorder.service;
+package com.melitaorder.service;
 
 import static com.meltaorder.exeption.ErrorType.ORDER_NOT_FOUND;
-import static com.meltaorder.utils.ObjectFactory.buildApprovedOrder;
-import static com.meltaorder.utils.ObjectFactory.buildPersonalDetails;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.melitaorder.utils.ObjectFactory;
 import com.meltaorder.dto.request.ApprovedOrder;
 import com.meltaorder.exeption.OrderServiceException;
 import com.meltaorder.repository.OrderingRepository;
@@ -32,11 +31,11 @@ class OrderServiceTest {
 
   @Test
   void testForConsumerServiceApprovedStatusUpdate() {
-    Optional<PersonalDetails> personalDetails = Optional.of(buildPersonalDetails());
+    Optional<PersonalDetails> personalDetails = Optional.of(ObjectFactory.buildPersonalDetails());
     when(orderingRepository.findById(1L)).thenReturn(personalDetails);
-    orderService.approvedOrder(buildApprovedOrder());
+    orderService.approvedOrder(ObjectFactory.buildApprovedOrder());
 
-    verify(orderingRepository).save(buildPersonalDetails());
+    verify(orderingRepository).save(ObjectFactory.buildPersonalDetails());
     verify(orderingRepository, times(1)).save(personalDetails.get());
 
   }
@@ -44,7 +43,7 @@ class OrderServiceTest {
   @Test
   void testForConsumerServiceApprovedStatusNotUpdate_WhenIdIsNotFound() {
     Optional<PersonalDetails> personalDetails = Optional.empty();
-    ApprovedOrder approvedOrder = buildApprovedOrder();
+    ApprovedOrder approvedOrder = ObjectFactory.buildApprovedOrder();
 
     when(orderingRepository.findById(1L)).thenReturn(personalDetails);
 

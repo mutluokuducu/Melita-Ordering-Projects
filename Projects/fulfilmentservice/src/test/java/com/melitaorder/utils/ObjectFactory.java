@@ -1,4 +1,4 @@
-package com.meltaorder.utils;
+package com.melitaorder.utils;
 
 import static com.meltaorder.dto.response.ApproveStatus.Approved;
 import static com.meltaorder.dto.response.ApproveStatus.Pending;

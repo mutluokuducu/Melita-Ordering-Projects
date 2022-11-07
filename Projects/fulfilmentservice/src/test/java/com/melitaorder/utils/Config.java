@@ -1,4 +1,4 @@
-package com.meltaorder.utils;
+package com.melitaorder.utils;
 
 import com.meltaorder.services.ConsumerService;
 import org.springframework.amqp.rabbit.test.RabbitListenerTest;

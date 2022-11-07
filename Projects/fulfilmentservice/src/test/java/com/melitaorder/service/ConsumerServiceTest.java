@@ -1,10 +1,9 @@
-package com.meltaorder.service;
+package com.melitaorder.service;
 
-import static com.meltaorder.utils.ObjectFactory.buildOrderResponse;
-import static com.meltaorder.utils.ObjectFactory.buildPersonalDetails;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import com.melitaorder.utils.ObjectFactory;
 import com.meltaorder.repository.OrderingRepository;
 import com.meltaorder.repository.entity.PersonalDetails;
 import com.meltaorder.services.ConsumerService;
@@ -29,10 +28,10 @@ class ConsumerServiceTest {
 
   @Test
   void testForConsumerService() {
-    PersonalDetails personalDetails = buildPersonalDetails();
+    PersonalDetails personalDetails = ObjectFactory.buildPersonalDetails();
     personalDetails.setId(0L);
-    consumerService.saveOrder(buildOrderResponse());
-    verify(orderingRepository).save(buildPersonalDetails());
+    consumerService.saveOrder(ObjectFactory.buildOrderResponse());
+    verify(orderingRepository).save(ObjectFactory.buildPersonalDetails());
     verify(orderingRepository, times(1)).save(personalDetails);
     verify(emailService).sendEmail(personalDetails);
     verify(emailService, times(1)).sendEmail(personalDetails);

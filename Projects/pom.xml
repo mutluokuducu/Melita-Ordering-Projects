@@ -10,7 +10,7 @@
 
     <modules>
         <module>fulfilmentservice</module>
-        <module>orderingservice</module>
+        <module>agentservice</module>
     </modules>
 
 </project>
